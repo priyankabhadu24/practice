@@ -1,4 +1,4 @@
-name: Build and Deploy to ECR and ECS
+name: Build and Deploy to ECR.
 
 on:
   # Trigger 1: Push to the main branch
@@ -20,7 +20,7 @@ on:
 
 jobs:
   deploy:
-    name: Build and Deploy Docker Image to ECR and ECS
+    name: Build and Deploy Docker Image to ECR.
     runs-on: ubuntu-latest
 
     steps:
