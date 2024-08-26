@@ -1,0 +1,49 @@
+name: Build and Deploy to ECR and ECS
+
+on:
+  # Trigger 1: Push to the main branch
+  push:
+    branches:
+      - main
+  
+  # Trigger 2: Pull request to the main branch
+  pull_request:
+    branches:
+      - main
+
+  # Trigger 3: Schedule the workflow to run daily at midnight UTC
+  schedule:
+    - cron: '0 0 * * *'
+
+  # Trigger 4: Manual dispatch
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build and Deploy Docker Image to ECR and ECS
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      # Step 2: Log in to Amazon ECR
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # Step 3: Build the Docker image
+      - name: Build the Docker image
+        run: |
+          docker build -t laravel-app:latest .
+
+      # Step 4: Tag the Docker image for ECR
+      - name: Tag the Docker image
+        run: |
+          docker tag laravel-app:latest ${{ secrets.AWS_ECR_REPOSITORY }}:latest
+
+      # Step 5: Push the Docker image to ECR
+      - name: Push the Docker image to ECR
+        run: |
+          docker push ${{ secrets.AWS_ECR_REPOSITORY }}:latest
