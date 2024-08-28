@@ -41,4 +41,4 @@ jobs:
       # Push Docker image to ECR
       - name: Push Docker image
         run: |
-          docker push 924144197303.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}laravel-app:latest
+          docker push 924144197303.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}laravel-demo:latest
