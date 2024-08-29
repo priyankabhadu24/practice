@@ -1,0 +1,17 @@
+name: Deploy Laravel App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/deploy-laravel.yml   # reusable workflow call 
+    with:
+      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+      aws-region: ${{ secrets.AWS_REGION }}
+      aws-account-id: ${{ secrets.AWS_ACCOUNT_ID }}
+      ecr-repository: ${{ secrets.ECR_REPOSITORY }}
