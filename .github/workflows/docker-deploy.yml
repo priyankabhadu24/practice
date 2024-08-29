@@ -14,6 +14,10 @@ on:
         options:
          - production 
          - dev
+# trigger at 9:30 pm cron job
+  schedule:
+    - cron: "30 21 * * *"
+
 
 jobs:
   build-and-deploy:
