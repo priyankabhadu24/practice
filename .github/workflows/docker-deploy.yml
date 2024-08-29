@@ -25,9 +25,9 @@ on:
       AWS_SECRET_ACCESS_KEY:
         required: true
       AWS_SESSION_TOKEN:
-        required: false
+        required: true
       AWS_REGION:
-        required: false
+        required: true
       ecr-repository:
         required: true
       AWS_ACCOUNT_ID:
