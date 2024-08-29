@@ -4,19 +4,19 @@ on:
   workflow_call:
     inputs:
       aws-access-key-id:
-        required: true
+        required: false
         type: string
       aws-secret-access-key:
-        required: true
+        required: false
         type: string
       aws-session-token:
         required: false
         type: string
       aws-region:
-        required: true
+        required: false
         type: string
       aws-account-id:
-        required: true
+        required: false
         type: string
 
     secrets:
@@ -30,7 +30,7 @@ on:
         required: true
       ecr-repository:
         required: true
-        
+
 # preparing job for laravel app
 jobs:
   build-and-deploy:
