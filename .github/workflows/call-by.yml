@@ -11,7 +11,7 @@ on:
           - production
           - dev
   schedule:
-    - cron: "30 22 * * *"
+    - cron: "00 00 * * *"
 
 jobs:
   deploy:
