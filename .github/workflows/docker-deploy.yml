@@ -1,25 +1,6 @@
 name: Build and Deploy Laravel Application
-# Trigger workflow when code is pushed to the 'main' branch
 on:
-  status:
-# Triggered when the status of a commit changes
-
-# workflow-dispatch manual trigger on prod and dev
-  workflow_dispatch:
-    inputs:
-      environment: 
-        description: ' deployment environment '
-        default: 'production'
-        required: true
-        options:
-         - production 
-         - dev
-# trigger at 9:30 pm cron job
-  schedule:
-    - cron: "30 21 * * *"
-
 # creating reusable workflow
-
   workflow_call:
     inputs:
       aws-access-key-id:
