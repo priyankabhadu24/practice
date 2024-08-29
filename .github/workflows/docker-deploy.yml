@@ -18,9 +18,7 @@ on:
       aws-account-id:
         required: true
         type: string
-      ecr-repository:
-        required: true
-        type: string
+
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
@@ -30,7 +28,9 @@ on:
         required: false
       AWS_REGION:
         required: true
-
+      ecr-repository:
+        required: true
+        
 # preparing job for laravel app
 jobs:
   build-and-deploy:
