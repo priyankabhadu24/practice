@@ -62,9 +62,9 @@ jobs:
       # Build Docker image
       - name: Build Docker image
         run: |
-          docker build -t ${{ inputs.aws-account-id }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com/${{ inputs.ecr-repository }}:latest .
+          docker build -t ${{ inputs.aws-account-id }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com/${{ inputs.ecr-repository }}laravel-demo:latest .
 
       # Push Docker image to ECR
       - name: Push Docker image
         run: |
-          docker push ${{ inputs.aws-account-id }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com/${{ inputs.ecr-repository }}:latest
+          docker push ${{ inputs.aws-account-id }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com/${{ inputs.ecr-repository }}laravel-demo:latest
