@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    uses: ./.github/workflows/deploy-laravel.yml   # reusable workflow call 
+    uses: priyankabhadu24/practice/.github/workflows/docker-deploy.yml@main  # reusable workflow call with tag main branch 
     with:
       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
