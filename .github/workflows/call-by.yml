@@ -15,7 +15,7 @@ on:
 
 jobs:
   deploy:
-    uses: priyankabhadu24/practice/.github/workflows/docker-deploy.yml@main
+    uses: ./.github/workflows/docker-deploy.yml@main
     with:
       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
