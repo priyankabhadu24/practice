@@ -1,9 +1,20 @@
 name: Build and Deploy Laravel Application
-
+# Trigger workflow when code is pushed to the 'main' branch
 on:
   push:
     branches:
       - main
+
+# workflow-dispatch manual trigger on prod and dev
+  workflow_dispatch:
+    inputs:
+      environment: 
+        description: ' deployment environment '
+        default: 'production'
+        required: true
+        options:
+         - production 
+         - dev
 
 jobs:
   build-and-deploy:
