@@ -27,7 +27,7 @@ on:
       AWS_SESSION_TOKEN:
         required: false
       AWS_REGION:
-        required: true
+        required: false
       ecr-repository:
         required: true
       AWS_ACCOUNT_ID:
@@ -54,7 +54,7 @@ jobs:
           aws-access-key-id: ${{ inputs.aws-access-key-id }}
           aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
           aws-session-token: ${{ inputs.aws-session-token }}
-          aws-region: ${{ inputs.aws-region }}
+          aws-region: us-east-1
 
       # Log in to AWS ECR
       - name: Log in to Amazon ECR
