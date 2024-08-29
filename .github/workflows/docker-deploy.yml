@@ -30,6 +30,8 @@ on:
         required: true
       ecr-repository:
         required: true
+      AWS_ACCOUNT_ID:
+        required: true
 
 # preparing job for laravel app
 jobs:
