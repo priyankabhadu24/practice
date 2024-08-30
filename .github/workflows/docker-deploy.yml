@@ -28,7 +28,7 @@ on:
 # preparing job for laravel app
 jobs:
   build-and-deploy:
-    environment: production
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     if: ${{ inputs.environment == 'production' }}  # Conditional job execution
 
