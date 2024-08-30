@@ -1,6 +1,8 @@
-name: Reusable Build and Deploy Laravel Application
-
+name: Build and Deploy Laravel Application
 on:
+
+# creating reusable workflow
+
   workflow_call:
     inputs:
       aws-access-key-id:
@@ -21,10 +23,8 @@ on:
       ecr-repository:
         required: true
         type: string
-      environment:
-        required: true
-        type: string
 
+# preparing job for laravel app
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -51,12 +51,10 @@ jobs:
       - name: Log in to Amazon ECR
         run: |
           aws ecr get-login-password --region ${{ inputs.aws-region }} | docker login --username AWS --password-stdin ${{ inputs.aws-account-id }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com
-
       # Build Docker image
       - name: Build Docker image
         run: |
           docker build -t ${{ inputs.aws-account-id }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com/${{ inputs.ecr-repository }}laravel-demo:latest .
-
       # Push Docker image to ECR
       - name: Push Docker image
         run: |

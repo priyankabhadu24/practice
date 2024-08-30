@@ -5,19 +5,22 @@ on:
     inputs:
       environment:
         description: 'Deployment environment'
-        required: true
         default: 'production'
+        required: true
         options:
           - production
           - dev
 
+  schedule:
+    - cron: "30 21 * * *" # Trigger at 9:30 PM daily
+
 jobs:
   deploy:
-    uses: ./.github/workflows/docker-deploy.yml
+    uses: ./.github/workflows/reusable-build-deploy.yml
     with:
       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}  # Optional
+      aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} 
       aws-region: ${{ secrets.AWS_REGION }}
       aws-account-id: ${{ secrets.AWS_ACCOUNT_ID }}
       ecr-repository: ${{ secrets.ECR_REPOSITORY }}
