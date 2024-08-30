@@ -24,10 +24,10 @@ on:
         required: false
         type: string
 
-    permissions:
-      contents: read
-      id-token: write
-      secrets: write
+permissions:
+  contents: read
+  id-token: write
+  
 
 
 # preparing job for laravel app
