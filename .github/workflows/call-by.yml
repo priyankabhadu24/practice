@@ -11,22 +11,16 @@ on:
           - production
           - dev
   schedule:
-    - cron: "00 00 * * *"
+    - cron: "00 00 * * *"  # Runs every day at midnight
 
 jobs:
   deploy:
     uses: ./.github/workflows/docker-deploy.yml
+    with:
+      aws-region: ${{ github.event.inputs.environment == 'production' && 'us-east-1' || 'us-west-2' }}
+      ecr-repository: ${{ secrets.ECR_REPOSITORY }}
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
-    with:
-      aws-region: ${{ secrets.AWS_REGION }}
-      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-      aws-account-id: ${{ secrets.AWS_ACCOUNT_ID }}
-      ecr-repository: ${{ secrets.ECR_REPOSITORY }}
