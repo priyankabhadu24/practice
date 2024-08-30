@@ -16,7 +16,7 @@ on:
 jobs:
   deploy:
     uses: ./.github/workflows/docker-deploy.yml
-    
+    secrets: inherit
 
     # uses: ./.github/workflows/docker-deploy.yml
     # with:
