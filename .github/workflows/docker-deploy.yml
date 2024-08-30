@@ -4,24 +4,24 @@ on:
   workflow_call:
     inputs:
       aws-access-key-id:
-        required: false
+        required: true
         type: string
       aws-secret-access-key:
-        required: false
+        required: true
         type: string
       aws-session-token:
-        required: false
+        required: true
         type: string
       aws-region:
-        required: false
+        required: true
         type: string
       aws-account-id:
-        required: false
+        required: true
         type: string
       ecr-repository:
-        required: false
+        required: true
         type: string
-        
+
     # secrets:
     #   AWS_ACCESS_KEY_ID:
     #     required: true
