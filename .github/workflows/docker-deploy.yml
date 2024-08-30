@@ -28,6 +28,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    if: ${{ inputs.environment == 'production' }}  # Conditional job execution
 
     steps:
       # Checkout the code
