@@ -24,12 +24,6 @@ on:
         required: false
         type: string
 
-permissions:
-  contents: read
-  id-token: write
-  
-
-
 # preparing job for laravel app
 jobs:
   build-and-deploy:
@@ -64,7 +58,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}laravel-demo:latest .
-      # Push Docker image to ECR
+      # Push Docker image to ECR # docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}laravel-demo:latest
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}laravel-demo:latest
+          docker push 924144197303.dkr.ecr.us-east-1.amazonaws.com/laravel-demo:latest
