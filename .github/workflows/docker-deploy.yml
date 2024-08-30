@@ -57,8 +57,8 @@ jobs:
       # Build Docker image
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}laravel-demo:latest .
+          docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}laravel:latest .
       # Push Docker image to ECR # docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}laravel-demo:latest
       - name: Push Docker image
         run: |
-          docker push 924144197303.dkr.ecr.us-east-1.amazonaws.com/laravel-demo:latest
+          docker push 924144197303.dkr.ecr.us-east-1.amazonaws.com/laravel:latest
