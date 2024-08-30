@@ -2,17 +2,26 @@ name: Build and Deploy Laravel Application
 
 on:
   workflow_call:
-    # inputs:
-      # aws-region:
-      #   description: 'AWS Region for deployment'
-      #   required: true
-      #   type: string
-      # ecr-repository:
-      #   description: 'ECR Repository name'
-      #   required: true
-      #   type: string
+    inputs:
+      aws-region:
+        description: 'AWS Region for deployment'
+        required: false
+        type: string
+      ecr-repository:
+        description: 'ECR Repository name'
+        required: false
+        type: string
 
-    
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: false
+      AWS_SECRET_ACCESS_KEY:
+        required: false
+      AWS_SESSION_TOKEN:
+        required: false
+      AWS_ACCOUNT_ID:
+        required: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -33,28 +42,20 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: us-east-1
+          aws-region: ${{ inputs.aws-region }}
 
       # Log in to AWS ECR
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
+      - name: Log in to Amazon ECR
+        run: |
+          aws ecr get-login-password --region ${{ inputs.aws-region }} | \
+          docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com
 
       # Build Docker image
       - name: Build Docker image
         run: |
-          docker build -t laravel-demo .
-          
-      - name: Tag & Push Docker image to ECR
-        working-directory: backend
-        env:
-          ecr_registry: ${{ steps.login-ecr.outputs.registry }}
-          ecr_repo: "laravel-demo"
-        run: |
-          docker tag laravel-demo $ecr_registry/$ecr_repo:latest
-          docker push $ecr_registry/$ecr_repo:latest
+          docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com/${{ inputs.ecr-repository }}laravel-demo:latest .
 
-      # # Push Docker image to ECR
-      # - name: tag and push
-      #   run: |
-      #     docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com/${{ inputs.ecr-repository }}laravel-demo:latest
+      # Push Docker image to ECR
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com/${{ inputs.ecr-repository }}laravel-demo:latest
