@@ -15,12 +15,15 @@ on:
 
 jobs:
   deploy:
-    uses: ./.github/workflows/docker-deploy.yml
-    with:
-      aws-region: ${{ secrets.AWS_REGION }}
-      ecr-repository: ${{ secrets.ECR_REPOSITORY }}
-    secrets:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+    uses: ./.github/workflows/docker.deploy.yml
+    
+
+    # uses: ./.github/workflows/docker-deploy.yml
+    # with:
+    #   aws-region: ${{ secrets.AWS_REGION }}
+    #   ecr-repository: ${{ secrets.ECR_REPOSITORY }}
+    # secrets:
+    #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #   AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+    #   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
