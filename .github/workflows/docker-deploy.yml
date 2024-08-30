@@ -12,18 +12,7 @@ on:
       #   required: true
       #   type: string
 
-    secrets:
-      AWS_ACCESS_KEY_ID:
-        required: false
-      AWS_SECRET_ACCESS_KEY:
-        required: false
-      AWS_SESSION_TOKEN:
-        required: false
-      AWS_ACCOUNT_ID:
-        required: false
-      ECR_REPOSITORY:
-        required: false
-
+    
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
